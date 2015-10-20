@@ -18,7 +18,10 @@ gulp.task('sass:watch', function() {
 gulp.task('scripts', function() {
     gulp.src([
         'app/react-app/Book.js',
-        'app/react-app/BookList.js'
+        'app/react-app/BookList.js',
+        'app/react-app/FormInput.js',
+        'app/react-app/AddBookForm.js'
+
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('public/scripts'));
@@ -27,6 +30,8 @@ gulp.task('scripts', function() {
 gulp.task('scripts:watch', function() {
     gulp.watch([
         'app/react-app/Book.js',
-        'app/react-app/BookList.js'
+        'app/react-app/BookList.js',
+        'app/react-app/FormInput.js',
+        'app/react-app/AddBookForm.js'
     ], ['scripts']);
 });

@@ -1,38 +1,3 @@
-
-var data = [
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets1',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    },
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets2',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    },
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets3',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    }
-];
-
-
 var BookList = React.createClass({
 
     getBooks: function() {
@@ -44,13 +9,15 @@ var BookList = React.createClass({
                 if (response.status == 200) {
                     resolve(JSON.parse(response.responseText));
                 }
+
             }, false);
-            xhr.addEventListener('error', function(event) {
-                reject(new Error('Ошибка при загрузке данных с сервера!'));
+            xhr.addEventListener('error', function() {
+                reject(new Error('Ошибка при загрузке данных с сервера.'));
             }, false);
+
+            xhr.send(null);
         });
     },
-
 
     getInitialState: function() {
         return {
@@ -58,24 +25,20 @@ var BookList = React.createClass({
         };
     },
 
-    componentWillMount: function() {
-        'use strict';
-        this.getBooks()
-            .then(books => this.setState({books: books}))
+    componentDidMount: function() {
+        this.getBooks().then(books => this.setState({books: books}))
             .catch(err => console.error(err.toString()));
     },
-
 
     render: function() {
         return (
             <div className="book-list">
-                {this.state.books.map(function(book, i) {
-                    return <Book title={book.title} author={book.author} tags={book.tags} poster={book.poster} key={i} />
+                {this.state.books.map(function(book) {
+                    return <Book title={book.title} author={book.author} poster={book.poster} key={book.id} />
                 })}
             </div>
         );
     }
 });
 
-ReactDOM.render(<BookList />, document.getElementById('books-area'));
 

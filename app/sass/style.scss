@@ -18,6 +18,7 @@ html, body {
   position: relative;
   height: 50px;
   background-color: $header-bg-color;
+  @include clearfix();
 }
 
 .header-title {
@@ -29,6 +30,7 @@ html, body {
   }
 }
 .header-button {
+  position: relative;
   float: right;
   &__link {
     color: $header-link-color;
@@ -75,3 +77,4 @@ html, body {
 
 
 @import "book-item";
+@import "add-book-form";

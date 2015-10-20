@@ -11,3 +11,5 @@ create table tags(
     book_id int unsigned not null,
     foreign key (book_id) references books(id)
 );
+
+INSERT INTO books(title, author, poster) VALUES ('WebSockets', 'Andrew Lombardi', 'book-1.jpg');

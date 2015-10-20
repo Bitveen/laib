@@ -9,51 +9,11 @@ var Book = React.createClass({
                 <div className="book__desc">
                     <div className="book__title">{this.props.title}</div>
                     <div className="book__author">{this.props.author}</div>
-                    <div className="book__tags">
-                        {this.props.tags.map(function(tag, i) {
-                            return <a className="book__tag-item" href="#" key={i}>{tag}</a>
-                        })}
-                    </div>
                 </div>
             </div>
         );
     }
 });
-
-var data = [
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets1',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    },
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets2',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    },
-    {
-        poster: 'book-1.jpg',
-        title: 'WebSockets3',
-        author: 'Andrew Lombardi',
-        tags: [
-            'js',
-            'web sockets',
-            'html5'
-        ]
-    }
-];
-
-
 var BookList = React.createClass({
 
     getBooks: function() {
@@ -65,13 +25,15 @@ var BookList = React.createClass({
                 if (response.status == 200) {
                     resolve(JSON.parse(response.responseText));
                 }
+
             }, false);
-            xhr.addEventListener('error', function(event) {
-                reject(new Error('Ошибка при загрузке данных с сервера!'));
+            xhr.addEventListener('error', function() {
+                reject(new Error('Ошибка при загрузке данных с сервера.'));
             }, false);
+
+            xhr.send(null);
         });
     },
-
 
     getInitialState: function() {
         return {
@@ -79,24 +41,51 @@ var BookList = React.createClass({
         };
     },
 
-    componentWillMount: function() {
-        'use strict';
-        this.getBooks()
-            .then(books => this.setState({books: books}))
+    componentDidMount: function() {
+        this.getBooks().then(books => this.setState({books: books}))
             .catch(err => console.error(err.toString()));
     },
-
 
     render: function() {
         return (
             <div className="book-list">
-                {this.state.books.map(function(book, i) {
-                    return <Book title={book.title} author={book.author} tags={book.tags} poster={book.poster} key={i} />
+                {this.state.books.map(function(book) {
+                    return <Book title={book.title} author={book.author} poster={book.poster} key={book.id} />
                 })}
             </div>
         );
     }
 });
 
+
+
+var FormInput = React.createClass({
+
+    render: function() {
+        var fieldName = this.props.fieldName;
+        return (
+            <div className="add-book-form__row">
+                <label className="add-book-form__label" htmlFor={fieldName.toLowerCase()}>{fieldName}</label>
+                <input className="add-book-form__input" type="text" name={fieldName.toLowerCase()} id={fieldName.toLowerCase()} />
+            </div>
+        );
+    }
+});
+
+
+var AddBookForm = React.createClass({
+    render: function() {
+        return (
+            <form className="add-book-form__form">
+                <FormInput fieldName="Title" />
+                <FormInput fieldName="Author" />
+                <button type="submit" className="add-book-form__button">Add</button>
+                <a href="#" className="add-book-form__button_cancel">Cancel</a>
+            </form>
+        );
+    }
+});
+
 ReactDOM.render(<BookList />, document.getElementById('books-area'));
+ReactDOM.render(<AddBookForm />, document.getElementById('book-form-container'));
 

@@ -9,11 +9,6 @@ var Book = React.createClass({
                 <div className="book__desc">
                     <div className="book__title">{this.props.title}</div>
                     <div className="book__author">{this.props.author}</div>
-                    <div className="book__tags">
-                        {this.props.tags.map(function(tag, i) {
-                            return <a className="book__tag-item" href="#" key={i}>{tag}</a>
-                        })}
-                    </div>
                 </div>
             </div>
         );

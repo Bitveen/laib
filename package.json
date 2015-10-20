@@ -25,7 +25,8 @@
   "homepage": "https://github.com/Bitveen/laib#readme",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mysql": "^2.9.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
