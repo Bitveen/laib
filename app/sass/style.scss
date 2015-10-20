@@ -1,0 +1,77 @@
+@import "settings";
+@import "mixins";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: $bg-color;
+  color: $font-color;
+}
+
+.container {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.header {
+  position: relative;
+  height: 50px;
+  background-color: $header-bg-color;
+}
+
+.header-title {
+  float: left;
+  &__text {
+    color: $header-color;
+    margin: 0;
+    line-height: 50px;
+  }
+}
+.header-button {
+  float: right;
+  &__link {
+    color: $header-link-color;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 50px;
+    font-size: 14px;
+    &:hover {
+      color: darken($header-link-color, 10%);
+    }
+  }
+  &__text {
+    margin-left: 5px;
+  }
+}
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+.content {
+  margin-top: 50px;
+}
+.book-list {
+  @include clearfix();
+}
+
+
+
+.footer {
+  border-top: 1px solid #ddd;
+  margin-top: 50px;
+  padding-top: 50px;
+}
+.footer-info {
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+.footer-link {
+  font-weight: bold;
+}
+
+
+@import "book-item";

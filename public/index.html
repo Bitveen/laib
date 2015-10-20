@@ -3,8 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Library of awesome IT books</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 <body>
+    <!-- Основной контейнер -->
+    <div class="container">
+        <!--  Хедер сайта с названием и кнопкой -->
+        <header class="header">
+            <div class="wrapper">
+                <div class="header-title">
+                    <h3 class="header-title__text">Library of awesome IT books</h3>
+                </div>
+                <div class="header-button">
+                    <a class="header-button__link" href="#"><i class="fa fa-plus"></i><span class="header-button__text">Add new book</span></a>
+                </div>
+            </div>
+        </header>
+        <!-- Контейнер в 960px -->
+        <div class="wrapper">
+            <!-- Основной контент -->
+            <section class="content" id="books-area"></section>
+            <footer class="footer">
+                <p class="footer-info">
+                    &copy; 2015. Made by <a class="footer-link" href="https://github.com/Bitveen">Bitveen</a>. Powered by React.js & Node.js
+                </p>
+            </footer>
+        </div>
 
+
+    </div>
+
+
+
+    <script type="text/babel" src="scripts/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+.book {
+  box-sizing: border-box;
+  width: 240px;
+  padding: 0 15px;
+  float: left;
+  margin-top: 50px;
+  &__poster {
+
+  }
+  &__img {
+    max-width: 100%;
+  }
+
+  &__desc {
+    text-align: center;
+    padding: 5px;
+  }
+
+  &__title {
+    font-size: 14px;
+  }
+
+  &__author {
+    font-size: 14px;
+  }
+
+  &__tags {}
+
+  &__tag-item {
+    margin-left: 5px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+
+
+}
+
