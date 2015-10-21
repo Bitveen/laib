@@ -3,6 +3,7 @@ var BookLibrary = React.createClass({
     viewForm: function(event) {
         event.preventDefault();
         document.querySelector('.add-book-form').style.display = "block";
+        document.querySelector('.add-book-area').style.display = "none";
     },
 
     getBooks: function() {
@@ -22,7 +23,6 @@ var BookLibrary = React.createClass({
             xhr.send(null);
         });
     },
-
     componentDidMount: function() {
         this.getBooks().then(function(books) {
             this.setState({books: books});
@@ -35,6 +35,7 @@ var BookLibrary = React.createClass({
     handleBookAdd: function(book) {
         var newBooks = this.state.books.concat([book]);
         document.querySelector('.add-book-form').style.display = "none";
+        document.querySelector('.add-book-area').style.display = "block";
         this.setState({books: newBooks});
     },
 
@@ -54,17 +55,13 @@ var BookLibrary = React.createClass({
                         <div className="header-title">
                             <h3 className="header-title__text">Library of awesome IT books</h3>
                         </div>
-                        <div className="header-button">
-                            <a className="header-button__link" href="" onClick={this.viewForm}>
-                                <i className="fa fa-plus"></i>
-                                <span className="header-button__text">Add new book</span>
-                            </a>
-                            <BookForm onBookAdd={this.handleBookAdd}/>
-                        </div>
                     </div>
                 </header>
-
                 <div className="wrapper">
+                    <div className="add-book-area">
+                        <a href="" onClick={this.viewForm} className="add-book-button">Add new book</a>
+                    </div>
+                    <BookForm onBookAdd={this.handleBookAdd} />
                     <BookList books={this.state.books} />
                     <footer className="footer">
                         <p className="footer-info">

@@ -35,7 +35,25 @@ server.route('/api/books')
         req.on("end", function() {
             var bookData = JSON.parse(rawBody);
             var book = new Book(bookData);
-            book.save(function(err) {
+            book.save(function(err, result) {
+                if (err) {
+                    throw err;
+                }
+                res.status(300).json({id: result.id});
+            });
+        });
+    })
+    .put(function(req, res) {
+        var rawBody = "";
+        req.on("data", function(chunk) {
+            rawBody += chunk.toString();
+        });
+
+        req.on("end", function() {
+            var bookData = JSON.parse(rawBody);
+            var id = bookData.id;
+            delete bookData.id;
+            Book.findByIdAndUpdate(id, bookData, function(err) {
                 if (err) {
                     throw err;
                 }

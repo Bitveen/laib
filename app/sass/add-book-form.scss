@@ -1,17 +1,10 @@
 .add-book-form {
-  z-index: 100;
-  left: -205px;
-  position: absolute;
-  top: 51px;
   padding: 15px;
-  background-color: #fff;
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  width: 300px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border: 1px solid #ddd;
+  width: 400px;
+  border-radius: 3px;
   display: none;
+  margin: 30px auto;
   &__row {
     margin-bottom: 15px;
   }

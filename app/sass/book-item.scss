@@ -1,59 +1,45 @@
-.book {
-  position: relative;
+.col {
   box-sizing: border-box;
   width: 240px;
-  height: 400px;
-  padding: 0 15px;
   float: left;
-  margin-top: 50px;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 15px;
+}
 
+
+
+.book {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 15px;
+  height: 300px;
+  &:hover {
+    background-color: #f6f6f6;
+  }
   &_form {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 15px;
+    &:hover {
+      background-color: $bg-color;
+    }
   }
-
-  &__poster {
-
-  }
-
-
-  &__img {
-    max-width: 100%;
-  }
-
-
-
-  &__desc {
-    text-align: center;
-    padding: 5px;
-  }
-
-  &__title {
-    font-size: 14px;
-  }
-
-  &__author {
-    font-size: 14px;
-  }
-
-  &__tags {}
-
   &__tag-item {
     margin-left: 5px;
     color: $link-color;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: bold;
     &:first-child {
       margin-left: 0;
     }
-
-
-
-
   }
 
+
+
   &__actions {
+    position: relative;
     text-align: center;
+    margin-top: 20px;
   }
 
   &__action-button {
@@ -63,6 +49,18 @@
     color: $link-color;
   }
 
+  &__info {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  &__info-label {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  &__info-text {
+    font-size: 12px;
+  }
 
 
 }

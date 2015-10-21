@@ -6,7 +6,7 @@ var BookForm = React.createClass({
             xhr.open('POST', '/api/books', true);
 
             xhr.addEventListener('load', function(event) {
-                resolve();
+                resolve(JSON.parse(event.target.responseText));
             }, false);
 
             xhr.addEventListener('error', function(event) {
@@ -24,29 +24,37 @@ var BookForm = React.createClass({
         var bookTitle = this.refs.bookTitle.value.trim();
         var bookAuthor = this.refs.bookAuthor.value.trim();
         var bookTags = this.refs.bookTags.value.split(',').map((tag => tag.trim()));
+        var bookPublicationYear = this.refs.bookPublicationYear.value.trim();
+
 
         var book = {
             title: bookTitle,
             author: bookAuthor,
-            tags: bookTags,
-            poster: 'book-1.jpg'
+            publicationYear: bookPublicationYear,
+            tags: bookTags
         };
 
-        this.createBook(book).then(function() {
+        this.createBook(book).then(function(response) {
+
             this.refs.bookTitle.value = "";
             this.refs.bookAuthor.value = "";
+            this.refs.bookPublicationYear.value = "";
             this.refs.bookTags.value = "";
+
+            book.id = response.id;
             this.props.onBookAdd(book);
+
         }.bind(this));
     },
 
 
     handleCancelButton: function(event) {
         event.preventDefault();
-        // TODO: закрыть форму и очистить все поля
         document.querySelector('.add-book-form').style.display = "none";
+        document.querySelector('.add-book-area').style.display = "block";
         this.refs.bookTitle.value = "";
         this.refs.bookAuthor.value = "";
+        this.refs.bookPublicationYear.value = "";
         this.refs.bookTags.value = "";
     },
 
@@ -63,6 +71,10 @@ var BookForm = React.createClass({
                     <div className="add-book-form__row">
                         <label className="add-book-form__label" htmlFor="author">Author</label>
                         <input ref="bookAuthor" className="add-book-form__input" type="text" name="author" id="author" />
+                    </div>
+                    <div className="add-book-form__row">
+                        <label className="add-book-form__label" htmlFor="publicationYear">Publication year</label>
+                        <input ref="bookPublicationYear" className="add-book-form__input" type="text" name="publicationYear" id="publicationYear" />
                     </div>
                     <div className="add-book-form__row">
                         <label className="add-book-form__label" htmlFor="tags">Tags (separated by commas)</label>
