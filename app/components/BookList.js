@@ -9,7 +9,6 @@ var BookList = React.createClass({
                 if (response.status == 200) {
                     resolve(JSON.parse(response.responseText));
                 }
-
             }, false);
             xhr.addEventListener('error', function() {
                 reject(new Error('Ошибка при загрузке данных с сервера.'));
@@ -26,17 +25,22 @@ var BookList = React.createClass({
     },
 
     componentDidMount: function() {
-        this.getBooks().then(books => this.setState({books: books}))
-            .catch(err => console.error(err.toString()));
+        this.getBooks().then(function(books) {
+            this.setState({books: books});
+        }.bind(this)).catch(function(err) {
+            console.error(err.toString());
+        });
     },
 
     render: function() {
         return (
-            <div className="book-list">
-                {this.state.books.map(function(book) {
-                    return <Book title={book.title} author={book.author} poster={book.poster} key={book.id} />
-                })}
-            </div>
+            <section className="content">
+                <div className="book-list">
+                    {this.state.books.map(function(book, i) {
+                        return <Book title={book.title} author={book.author} poster={book.poster} key={i} tags={book.tags} />
+                    })}
+                </div>
+            </section>
         );
     }
 });

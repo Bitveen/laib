@@ -116,7 +116,6 @@ var AddBookForm = React.createClass({
 
     handleAddButton: function(event) {
         event.preventDefault();
-        // TODO: послать данные на сервер, закрыть форму и очистить поля
         var bookTitle = this.refs.bookTitle.value.trim();
         var bookAuthor = this.refs.bookAuthor.value.trim();
         var bookTags = this.refs.bookTags.value.split(',').map((tag => tag.trim()));
@@ -129,7 +128,7 @@ var AddBookForm = React.createClass({
         };
 
         this.createBook(book).then(function() {
-
+            //закрыть форму и вставить книгу
         });
 
 
@@ -140,8 +139,6 @@ var AddBookForm = React.createClass({
         event.preventDefault();
         // TODO: закрыть форму и очистить все поля
     },
-
-
 
 
     render: function() {

@@ -8,7 +8,7 @@ gulp.task('sass', function() {
         .pipe(sass({
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(gulp.dest('public/styles'));
+        .pipe(gulp.dest('app/styles'));
 });
 
 gulp.task('sass:watch', function() {
@@ -17,23 +17,25 @@ gulp.task('sass:watch', function() {
 
 gulp.task('scripts', function() {
     gulp.src([
-        'app/react-app/AddButton.js',
-        'app/react-app/Book.js',
-        'app/react-app/BookList.js',
-        'app/react-app/FormInput.js',
-        'app/react-app/AddBookForm.js'
+        'app/components/AddButton.js',
+        'app/components/Book.js',
+        'app/components/BookList.js',
+        'app/components/AddBookForm.js',
+        'app/components/BookLibrary.js',
+        'app/main.js'
 
     ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('public/scripts'));
+        .pipe(gulp.dest('app/scripts'));
 });
 
 gulp.task('scripts:watch', function() {
     gulp.watch([
-        'app/react-app/AddButton.js',
-        'app/react-app/Book.js',
-        'app/react-app/BookList.js',
-        'app/react-app/FormInput.js',
-        'app/react-app/AddBookForm.js'
+        'app/components/AddButton.js',
+        'app/components/Book.js',
+        'app/components/BookList.js',
+        'app/components/AddBookForm.js',
+        'app/components/BookLibrary.js',
+        'app/main.js'
     ], ['scripts']);
 });
