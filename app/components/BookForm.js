@@ -1,4 +1,4 @@
-var AddBookForm = React.createClass({
+var BookForm = React.createClass({
 
     createBook: function(book) {
         return new Promise(function(resolve, reject) {
@@ -20,6 +20,7 @@ var AddBookForm = React.createClass({
 
     handleAddButton: function(event) {
         event.preventDefault();
+
         var bookTitle = this.refs.bookTitle.value.trim();
         var bookAuthor = this.refs.bookAuthor.value.trim();
         var bookTags = this.refs.bookTags.value.split(',').map((tag => tag.trim()));
@@ -32,20 +33,26 @@ var AddBookForm = React.createClass({
         };
 
         this.createBook(book).then(function() {
-            //закрыть форму и вставить книгу
-        });
-
-
+            this.refs.bookTitle.value = "";
+            this.refs.bookAuthor.value = "";
+            this.refs.bookTags.value = "";
+            this.props.onBookAdd(book);
+        }.bind(this));
     },
 
 
     handleCancelButton: function(event) {
         event.preventDefault();
         // TODO: закрыть форму и очистить все поля
+        document.querySelector('.add-book-form').style.display = "none";
+        this.refs.bookTitle.value = "";
+        this.refs.bookAuthor.value = "";
+        this.refs.bookTags.value = "";
     },
 
 
     render: function() {
+
         return (
             <div className="add-book-form">
                 <form className="add-book-form__form">
@@ -58,10 +65,10 @@ var AddBookForm = React.createClass({
                         <input ref="bookAuthor" className="add-book-form__input" type="text" name="author" id="author" />
                     </div>
                     <div className="add-book-form__row">
-                        <label className="add-book-form__label" htmlFor="tags">Tags</label>
+                        <label className="add-book-form__label" htmlFor="tags">Tags (separated by commas)</label>
                         <input ref="bookTags" className="add-book-form__input" type="text" name="tags" id="tags" />
                     </div>
-                    <button onClick={this.handleAddButton} type="submit" className="add-book-form__button">Add</button>
+                    <button onClick={this.handleAddButton} type="submit" className="add-book-form__button">Send</button>
                     <a onClick={this.handleCancelButton} href="" className="add-book-form__button_cancel">Cancel</a>
                 </form>
             </div>

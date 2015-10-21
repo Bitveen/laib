@@ -8,7 +8,7 @@ gulp.task('sass', function() {
         .pipe(sass({
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(gulp.dest('app/styles'));
+        .pipe(gulp.dest('public/styles'));
 });
 
 gulp.task('sass:watch', function() {
@@ -17,24 +17,22 @@ gulp.task('sass:watch', function() {
 
 gulp.task('scripts', function() {
     gulp.src([
-        'app/components/AddButton.js',
         'app/components/Book.js',
         'app/components/BookList.js',
-        'app/components/AddBookForm.js',
+        'app/components/BookForm.js',
         'app/components/BookLibrary.js',
         'app/main.js'
 
     ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('app/scripts'));
+        .pipe(gulp.dest('public/scripts'));
 });
 
 gulp.task('scripts:watch', function() {
     gulp.watch([
-        'app/components/AddButton.js',
         'app/components/Book.js',
         'app/components/BookList.js',
-        'app/components/AddBookForm.js',
+        'app/components/BookForm.js',
         'app/components/BookLibrary.js',
         'app/main.js'
     ], ['scripts']);

@@ -19,6 +19,7 @@ html, body {
   height: 50px;
   background-color: $header-bg-color;
   @include clearfix();
+  border-bottom: 1px solid darken($header-bg-color, 10%);
 }
 
 .header-title {
@@ -37,6 +38,8 @@ html, body {
     text-transform: uppercase;
     text-decoration: none;
     font-weight: bold;
+    display: inline-block;
+    height: 50px;
     line-height: 50px;
     font-size: 14px;
     &:hover {
